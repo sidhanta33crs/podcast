@@ -6,6 +6,7 @@ export interface CustomLink {
   href: Route;
   targetBlank?: boolean;
   isForm?: boolean;
+  icon?: JSX.Element; // Add this line
 }
 
 //  ##########  PostDataType ######## //

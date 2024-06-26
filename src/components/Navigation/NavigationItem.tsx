@@ -291,7 +291,7 @@ const NavigationItem: FC<NavigationItemProps> = ({ menuItem }) => {
           href={{
             pathname: item.href || undefined,
           }}
-       style={{ color: '#fff'}} >
+       style={{ color: '#000'}} >
           {item.name}
           {item.type && (
             <ChevronDownIcon

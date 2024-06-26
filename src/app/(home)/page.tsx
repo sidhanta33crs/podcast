@@ -54,12 +54,12 @@ const PageSingleAudio = () => {
     <Layout>
       <div className={`relative pt-8 lg:pt-16`}>
         {/* Overlay */}
-        <div className=" absolute top-0 inset-x-0 h-60 w-full"></div>
+        <div className=" absolute top-0 inset-x-0 h-60 w-full"  style={{ color: '#e9e9e9'}}></div>
 
         {/* SINGLE_AUDIO HEADER */}
         <header className="relative container ">
-          <div className=" dark:bg-neutral-900 shadow-2xl px-5 py-7 md:p-11 rounded-2xl md:rounded-[40px] flex flex-col sm:flex-row items-center justify-center space-y-10 sm:space-y-0 sm:space-x-11" style={{
-            backgroundColor: '#f5984b', color: '#fff'
+          <div className=" dark:bg-neutral-900 px-5 py-7 md:p-11 rounded-2xl md:rounded-[40px] flex flex-col sm:flex-row items-center justify-center space-y-10 sm:space-y-0 sm:space-x-11" style={{
+            backgroundColor: '#fff', color: '#fff', boxShadow: 'rgb(201 0 2) 0px 0px, rgb(201 0 2) 0px 0px, rgb(220 118 117) 17px 23px 42px -5px, rgb(202 2 4) 0px 8px 10px -6px'
           }}>
             <div className="w-1/2 sm:w-1/4 flex-shrink-0">
               <ButtonPlayMusicPlayer
@@ -79,7 +79,7 @@ const PageSingleAudio = () => {
                 {/* </span> */}
               </div>
               <SingleTitle title={"Programming Languages"} />
-              <span className="hidden lg:block text-lg ">
+              <span className="hidden lg:block text-lg "  style={{ color: '#000'}}>
                 We’re an online magazine dedicated to covering the best in
                 international product design. We started as a little blog back
                 in 2002 covering student work and over time
