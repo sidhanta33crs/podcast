@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
   const renderWidgetMenuItem = (menu: WidgetFooterMenu, index: number) => {
     return (
       <div key={index} className="text-sm">
-        <h2 className="font-semibold  dark:text-neutral-200" style={{ color: '#fff !important' }}>
+        <h2 className="font-semibold" style={{ color: '#fff !important' }}>
         {menu.title}
         </h2>
         <ul className="mt-5 space-y-4">
@@ -111,10 +111,10 @@ const Footer: React.FC = () => {
       <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-4 lg:gap-x-10 ">
         <div className="grid grid-cols-4 gap-5 col-span-2 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
           <div className="col-span-2 md:col-span-1">
-             <h5 className="text-16 fw-500 mb-30" style={{ color: '#fff' }}>Our Address</h5>
+             <h5 className="font-semibold text-sm" style={{ color: '#fff' }}>Our Address</h5>
           </div>
-          <div className="col-span-2 flex items-center md:col-span-3">
-              <p style={{ color: '#fff' }}>
+          <div className="col-span-2 flex items-center md:col-span-3 ">
+              <p style={{ color: '#fff', lineHeight: '28px' }} className="text-neutral-6000   text-sm">
           33Crores Pooja Products Pvt Ltd ,<br />
           403, 4th Floor, O-Hub<br />
           IDCO Sez Infocity,<br />

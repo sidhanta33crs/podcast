@@ -25,7 +25,7 @@ const Heading: React.FC<HeadingProps> = ({
         <h2
           className={`text-2xl md:text-3xl lg:text-4xl font-semibold`}
           {...args}
-        >
+          style={{ color: '#c1252f'}}>
           {children || `Section Heading`}
         </h2>
         {desc && (

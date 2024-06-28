@@ -1,3 +1,4 @@
+import { color } from "framer-motion";
 import React, { FC } from "react";
 
 export interface SingleTitleProps {
@@ -12,7 +13,7 @@ const SingleTitle: FC<SingleTitleProps> = ({
   title,
 }) => {
   return (
-    <h1 className={className + " " + mainClass + " max-w-4xl "} title={title} style={{ fontSize: '29px' }}>
+    <h1 className={className + " " + mainClass + " max-w-4xl "} title={title} style={{ fontSize: '29px', color:'#c1252f' }}>
       {title}
     </h1>
   );

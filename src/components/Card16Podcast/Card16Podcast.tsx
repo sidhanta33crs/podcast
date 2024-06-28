@@ -81,7 +81,7 @@ const Card16Podcast: FC<Card16PodcastProps> = ({
         <span className="">
         Jul 22
       </span>
-          <h2 className="nc-card-title block sm:text-lg lg:text-xl font-semibold text-neutral-900 dark:text-neutral-100 ">
+          <h2 className="nc-card-title block sm:text-lg lg:text-xl font-semibold text-neutral-900 dark:text-neutral-100 " style={{ color: '#c1252f'}}>
             <Link href={href} className="line-clamp-1" title={title}>
               {title}
             </Link>

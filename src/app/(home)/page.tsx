@@ -52,9 +52,9 @@ const PageSingleAudio = () => {
 
   return (
     <Layout>
-      <div className={`relative pt-8 lg:pt-16`}>
+      <div className={`relative pt-8 lg:pt-16`} style={{ backgroundColor: '#bc1823'}}>
         {/* Overlay */}
-        <div className=" absolute top-0 inset-x-0 h-60 w-full"  style={{ color: '#e9e9e9'}}></div>
+        <div className=" absolute top-0 inset-x-0 h-60 w-full"  style={{ color: '#e9e9e9',backgroundColor: '#bc1823'}}></div>
 
         {/* SINGLE_AUDIO HEADER */}
         <header className="relative container ">
