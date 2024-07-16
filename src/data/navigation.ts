@@ -8,13 +8,13 @@ export const MEGAMENU_TEMPLATES: NavItemType[] = [
   // home pages ---------
   {
     id: randomId(),
-    href: "",
+    href: "https://www.33crores.com/",
     name: "Shop",
    
   },
   {
     id: randomId(),
-    href: "",
+    href: "http://panditapp.mandirparikrama.com/",
     name: "Book Pandit",
    
   },
@@ -329,13 +329,13 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
 
   {
     id: randomId(),
-    href: "",
+    href: "https://www.33crores.com/",
     name: "Shop",
    
   },
   {
     id: randomId(),
-    href: "",
+    href: "http://panditapp.mandirparikrama.com/",
     name: "Book Pandit",
    
   },

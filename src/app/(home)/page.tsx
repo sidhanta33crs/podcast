@@ -1,20 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "components/Badge/Badge";
 import iconPlaying from "images/icon-playing.gif";
 import featuredImageDemo from "images/podcast.jpg";
 import Image from "components/Image";
 import ButtonPlayMusicPlayer from "components/ButtonPlayMusicPlayer";
-import { DEMO_POSTS_AUDIO } from "data/posts";
 import SingleTitle from "app/(singles)/SingleTitle";
 import SingleMetaAction2 from "app/(singles)/SingleMetaAction2";
 import Layout from "../(home)/layout";
-
-const PageSingleAudio = () => {
+// import { PostDataType } from "../types";
+// import { DEMO_POSTS_AUDIO } from "data/posts";
+ 
+type Podcast = {
+  created_at: string;
+  description: string;
+  id: number;
+  image: string;
+  image_url: string;
+  music: string;
+  music_url: string;
+  name: string;
+  updated_at: string;
+};
+ 
+const PageSingleAudio: React.FC = () => {
+  const [latest_pod, setLatest_pod] = useState<Podcast | null>(null);
+ 
+  const getLatestPodcast = async () => {
+    try {
+      const response = await fetch('http://panditapp.mandirparikrama.com/api/podcasts', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+      const responseData = await response.json();
+      if (responseData.status === 200) {
+        setLatest_pod(responseData.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+ 
+  useEffect(() => {
+    getLatestPodcast();
+  }, []);
+ 
   const renderIcon = (playing: boolean) => {
     if (playing) {
       return <Image className="w-7" src={iconPlaying} alt="" />;
     }
-
     return (
       <svg className="w-11 h-11" fill="currentColor" viewBox="0 0 24 24">
         <path
@@ -27,7 +63,7 @@ const PageSingleAudio = () => {
       </svg>
     );
   };
-
+ 
   const renderButtonPlay = (playing: boolean) => {
     return (
       <div
@@ -36,10 +72,9 @@ const PageSingleAudio = () => {
         <Image
           className={`w-full h-full object-cover transition-transform z-0 nc-animation-spin rounded-full ${playing ? "playing" : ""
             }`}
-          src={featuredImageDemo}
+          src={latest_pod?.image_url || featuredImageDemo}
           alt="audio"
         />
-
         <div className="bg-neutral-900 bg-blend-multiply bg-opacity-75 rounded-full"></div>
         <div className="flex items-center justify-center">
           <div className="text-white bg-black bg-blend-multiply bg-opacity-50 w-20 h-20 border-2 border-neutral-300 rounded-full flex items-center justify-center ">
@@ -49,45 +84,42 @@ const PageSingleAudio = () => {
       </div>
     );
   };
-
+ 
   return (
     <Layout>
-      <div className={`relative pt-8 lg:pt-16`} style={{ backgroundColor: '#bc1823'}}>
+        <div className={`relative pt-8 lg:pt-16`} style={{ backgroundColor: '#bc1823'}}>
         {/* Overlay */}
         <div className=" absolute top-0 inset-x-0 h-60 w-full"  style={{ color: '#e9e9e9',backgroundColor: '#bc1823'}}></div>
 
-        {/* SINGLE_AUDIO HEADER */}
-        <header className="relative container ">
-          <div className=" dark:bg-neutral-900 px-5 py-7 md:p-11 rounded-2xl md:rounded-[40px] flex flex-col sm:flex-row items-center justify-center space-y-10 sm:space-y-0 sm:space-x-11" style={{
-            backgroundColor: '#fff', color: '#fff', boxShadow: 'rgb(201 0 2) 0px 0px, rgb(201 0 2) 0px 0px, rgb(220 118 117) 17px 23px 42px -5px, rgb(202 2 4) 0px 8px 10px -6px'
+        <header className="relative container">
+          <div className="dark:bg-neutral-900 shadow-2xl px-5 py-7 md:p-11 rounded-2xl md:rounded-[40px] flex flex-col sm:flex-row items-center justify-center space-y-10 sm:space-y-0 sm:space-x-11" style={{
+            backgroundColor: '#fff', color: '#fff'
           }}>
             <div className="w-1/2 sm:w-1/4 flex-shrink-0">
-              <ButtonPlayMusicPlayer
-                renderChildren={renderButtonPlay}
-                post={DEMO_POSTS_AUDIO[1]}
-              />
+              {latest_pod && (
+                <ButtonPlayMusicPlayer
+                  renderChildren={renderButtonPlay}
+                  post={{
+                    audioUrl: latest_pod?.music_url,
+                    title: latest_pod?.name,
+                    desc: latest_pod?.description,
+                    featuredImage: latest_pod?.image_url,
+                  }}
+                />
+              )}
             </div>
             <div className="flex flex-col space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 text-neutral-900">
-                {/* <div>
-                  <Badge name="S1 EP. 128" />
-                </div> */}
-                {/* <span className="text-neutral-500 dark:text-neutral-400">
-                  Adventures in DevOps */}
-                {/* <span className="mx-2">·</span> */}
-                Jul 22
-                {/* </span> */}
+                <span className="text-neutral-500 dark:text-neutral-400">
+                  {latest_pod && new Date(latest_pod.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </span>
               </div>
-              <SingleTitle title={"Programming Languages"} />
-              <span className="hidden lg:block text-lg "  style={{ color: '#000'}}>
-                We’re an online magazine dedicated to covering the best in
-                international product design. We started as a little blog back
-                in 2002 covering student work and over time
-              </span>
+              <SingleTitle title={latest_pod?.name || "Loading..."} />
+              <span className="hidden lg:block text-lg "  style={{ color: '#000'}}>{latest_pod?.description}</span>
               <SingleMetaAction2 />
             </div>
-            <div className="" style={{ width: '1367px' }}>
-              <Image src="/jj.jpg" className="" alt="" style={{ height: '323px', borderRadius: '1.5rem' }} />
+            <div className="" style={{ width: '1000px' }}>
+              <Image src={latest_pod?.image_url || featuredImageDemo} className="" alt="" style={{ height: '323px', borderRadius: '1.5rem' }} />
             </div>
           </div>
         </header>
@@ -95,5 +127,5 @@ const PageSingleAudio = () => {
     </Layout>
   );
 };
-
+ 
 export default PageSingleAudio;

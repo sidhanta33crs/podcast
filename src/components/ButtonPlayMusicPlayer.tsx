@@ -9,7 +9,7 @@ import Image from "components/Image";
 
 export interface ButtonPlayMusicPlayerProps {
   className?: string;
-  post: PostDataType;
+  post: any;
   renderChildren?: (playing: boolean) => ReactNode;
   renderDefaultBtn?: () => ReactNode;
   renderPlayingBtn?: () => ReactNode;
