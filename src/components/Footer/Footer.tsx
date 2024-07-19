@@ -39,8 +39,8 @@ const widgetMenus: WidgetFooterMenu[] = [
     id: "2",
     title: "Follow Us",
     menus: [
-      { href: "/", label: "Facebook", icon: <FaFacebook /> },
-      { href: "/", label: "Instagram", icon: <FaInstagram /> },
+      { href: "/",  icon: <FaFacebook /> },
+      { href: "/",  icon: <FaInstagram /> },
       
     ] as CustomLink[],
   },
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
   const renderWidgetMenuItem = (menu: WidgetFooterMenu, index: number) => {
     return (
       <div key={index} className="text-sm">
-        <h2 className="font-semibold" style={{ color: '#fff !important' }}>
+        <h2 className="font-semibold" style={{ color: '#fff' }}>
         {menu.title}
         </h2>
         <ul className="mt-5 space-y-4">
@@ -87,9 +87,9 @@ const Footer: React.FC = () => {
                   key={index}
                   className="text-neutral-6000  hover:text-black dark:hover:text-white"
                   href={item.href}
-                  style={{
-                    color: '#fff'}} >
-                  {item.label}
+                  style={{ color: '#fff'}}>
+                      {item.icon}
+                      {item.label}
                 </a>
               )}
             </li>
